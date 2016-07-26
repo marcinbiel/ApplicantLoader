@@ -6,7 +6,13 @@ function onSubmit() {
 
 function processURL(url) {
 	var tildeIndex = url.indexOf('~');
-	var newURL = url.substring(0, tildeIndex - 1) + url.substring(tildeIndex) + 'applicants';
+	var slash = '';
+	if (url.substring(url.length - 1) != '/') slash = '/';
+	var underscoreIndex = tildeIndex - 1;
+	if (url.charAt(tildeIndex - 1) != '_') {
+		underscoreIndex = tildeIndex;
+	}
+	var newURL = url.substring(0, underscoreIndex) + url.substring(tildeIndex) + slash + 'applicants';
 	return newURL;
 }
 
